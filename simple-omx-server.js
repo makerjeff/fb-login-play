@@ -8,6 +8,10 @@ var fs = require('fs');
 var server = http.createServer(function(req,res){
     if(req.method === 'GET' && req.url === '/'){
         res.writeHead(200, {'Content-Type':'text/html', 'X-Powered-By':'Bacon Grease'});
+        res.write('<html>');
+        res.write('<head>');
+        res.write('<title> OMX Player Controller </title>');
+        //TODO: continue here.
     }
 });
 
