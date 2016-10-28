@@ -7,5 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jefferson Wu <makerjeffwu@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type":"git",
+    "url":"https://github.com/makerjeff/fb-login-play.git"
+  },
+  "dependencies": {
+    "express":"latest",
+    "node-omxplayer":"latest",
+    "chalk":"latest",
+    "figlet":"latest",
+    "clear":"latest"
+  }
 }
