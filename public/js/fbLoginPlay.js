@@ -36,8 +36,8 @@ var fbLoginPlay = {
             case 'connected':
                 console.log('You are connected to FB and authorized.');
                 //console.log(data.authResponse.accessToken);
-                fbLoginPlay.getUserData('/me');
-                fbLoginPlay.getUserData('/me/permissions');
+                fbLoginPlay.getUserData('/me', {});
+                fbLoginPlay.getUserData('/me/permissions', {});
                 fbLoginPlay.getUserData('/me', {fields:'email'});
                 break;
             case 'not_authorized':
@@ -74,8 +74,8 @@ var fbLoginPlay = {
     /**
      * Make API call to get user data.
      */
-    getUserData: function(endpoint){
-        FB.api(endpoint, function(response){
+    getUserData: function(endpoint, paramsObject){
+        FB.api(endpoint, paramsObject, function(response){
             console.log(response);
         });
 
