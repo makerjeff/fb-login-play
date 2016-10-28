@@ -3,161 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>FB SDK</title>
-
-    <style>
-        html, body {
-            display: flex;
-            width: 100%;
-            height: 100%;
-
-            font-size: 16px;
-        }
-
-        #container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items:center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        #result {
-            font-family: Arial, sans-serif;
-            font-size: 5em;
-            font-weight: bold;
-            text-transform: capitalize;
-            position: relative;
-
-            top: -35px;
-
-
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-<!-- INITIALIZE AND LOAD FB -->
-<script>
-    // initialize FB app
-    window.fbAsyncInit = function(){
-        FB.init({
-            appId   : '1310049252373886',   //Purple Monkey App Id
-            xfbml   : true,
-            version : 'v2.6'
-        });
-    };
-
-    //IIFE that loads FB SDK (this is how to load JS files dynamically).
-    (function(d,s,id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script','facebook-jssdk'));
-</script>
-<!-- INITIALIZE AND LOAD FB - END -->
-
 <div id="container">
     <div id="result"> stuff. </div> </br>
-    <button id="button">Click to check FB status</button>
+    <button id="button">Dynamic-o button-o!</button>
+    <button id="checkStatusButton">check status</button>
 </div>
 
 
 <!-- NORMAL SCRIPTING ACTIONS -->
+<script src="js/fb_initializer.js"></script>
+<script src="js/fbLoginPlay.js"></script>
+<!--<script src="js/main.js"></script>-->
+
 <script>
+    //TODO: to be moved into MAIN.JS
 
-    //TODO: modularize.
-
-
-    var button = document.getElementById('button');
-    var resultDiv = document.getElementById('result');
-
-    //fully loaded
     window.addEventListener('load', function(e){
-        console.log('document loaded.');
+        console.log('fired after everything is loaded.');
+        fbLoginPlay.button.innerText = 'Random Name Generator';
 
-
-        button.addEventListener('click', checkFBStatus);
-
-    });
-
-    //DOM content loaded
-    document.addEventListener('DOMContentLoaded', function(e){
-        console.log('DOM content loaded.');
-    });
-
-    /**
-     * Check Facebook Login Status
-     * */
-    function checkFBStatus(){
-        //console.log('attempting to check fb status...');
-        //check to see login status
-        window.FB.getLoginStatus(function(response){
-            statusChangeCallback(response);
+        //button assignments
+        fbLoginPlay.button.addEventListener('click', function(e){
+            console.log(fbLoginPlay.getRandomName());
         });
-    }
 
-    /**
-     * Check the status of FB login.
-     * @param data  The data object that's passed back from FB.
-     */
-    function statusChangeCallback(data){
-        console.log(data);
+        var checkButton = document.getElementById('checkStatusButton');
+        checkButton.addEventListener('click', function(e){
+            fbLoginPlay.checkFBStatus();
+        });
 
-        if (data.status == 'connected') {
-            console.log('Congrats, you\'re logged in and authorized. FB away.');
-            swapLoginLogoutButton(true);
-            resultDiv.innerHTML = 'connected!';
-        }
-        else if (data.status == 'not_authorized') {
-            console.log('You\'re logged in, but not authorized, please sign in again.');
-            swapLoginLogoutButton(false);
-            //window.FB.login();
-            resultDiv.innerHTML = 'not authorized!';
-        }
-        else if (data.status == 'unknown') {
-            console.log('You\'re not logged into FB at all, please sign in.');
 
-            swapLoginLogoutButton(false);
-            resultDiv.innerHTML = 'unknown.';
-        }
-    }
+    });
 
-    function loginFB(){
-        window.FB.login();
-        console.log('logging you in.');
-        swapLoginLogoutButton(true);
-    }
+    document.addEventListener('DOMContentLoaded', function(e){
+        console.log('declared last, fired first.');
+    });
 
-    function logoutFB(){
-        window.FB.logout();
-        console.log('logging you out.');
-        resultDiv.innerHTML = 'Logged out.';
 
-        //remove button completely.
-        button.parentNode.removeChild(this);
-    }
-
-//TODO: incorporate this functionality into LoginFB/LogoutFB functions.
-    function swapLoginLogoutButton(loginState){
-
-        var button = document.getElementById('button');
-
-        if (loginState == true) {
-            button.innerText = 'Logout';
-            button.removeEventListener('click', checkFBStatus);
-            button.addEventListener('click', logoutFB);
-
-        } else {
-           button.innerText = 'Login';
-            button.removeEventListener('click', checkFBStatus);
-            button.addEventListener('click', loginFB);
-        }
-
-    }
 
 
 

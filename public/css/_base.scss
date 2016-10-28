@@ -1,0 +1,17 @@
+//COLORS
+$global-width: 100%;
+$global-height: 100%;
+$global-font-size: 16px;
+$global-font-color: rgba(10,10,10,1.0);
+$global-background-color: rgba(150,200,150,1.0);
+$global-font-stack: Arial, sans-serif;
+
+
+html, body {
+  display: flex;
+  width: $global-width;
+  height: $global-height;
+  font-size: $global-font-size;
+  color: $global-font-color;
+  background-color: $global-background-color;
+}

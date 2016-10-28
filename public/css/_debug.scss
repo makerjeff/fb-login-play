@@ -1,0 +1,18 @@
+#container {
+  display: flex;
+  width: $global-width;
+  height: $global-height;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#result {
+  font-family: $global-font-stack;
+  font-size: 5em;
+  font-weight: bold;
+  text-transform: capitalize;
+  position: relative;
+
+  top: -35px; //offset
+}
