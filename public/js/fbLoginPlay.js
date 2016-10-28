@@ -35,6 +35,10 @@ var fbLoginPlay = {
         switch(data.status) {
             case 'connected':
                 console.log('You are connected to FB and authorized.');
+                //console.log(data.authResponse.accessToken);
+                fbLoginPlay.getUserData('/me');
+                fbLoginPlay.getUserData('/me/permissions');
+                fbLoginPlay.getUserData('/me', {fields:'email'});
                 break;
             case 'not_authorized':
                 console.log('You are connected to FB, but not authorized for this app.');
@@ -59,12 +63,23 @@ var fbLoginPlay = {
 
         btn.addEventListener('click', function(e){
             //login and remove button
-            FB.login();
+            FB.login(function(response){
+                console.log(response);
+            }, {scope:'public_profile, email'});
             this.parentNode.removeChild(this);
         });
 
     },
 
+    /**
+     * Make API call to get user data.
+     */
+    getUserData: function(endpoint){
+        FB.api(endpoint, function(response){
+            console.log(response);
+        });
+
+    },
     /**
      * Debug: Get a random name.
      * @returns {string}    Returns a standard string name.
