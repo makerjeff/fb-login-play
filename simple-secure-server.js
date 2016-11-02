@@ -1,13 +1,13 @@
 /**
  * Created by jefferson.wu on 10/28/16.
  */
-
+'use strict';
 
 // to check, curl -k https:<your IP address>:3443.
 const https = require('https');
 const fs = require('fs');
-
 const os = require('os');
+
 var ifaces = os.networkInterfaces();
 
 Object.keys(ifaces).forEach(function(elem,ind, arr){
@@ -37,6 +37,4 @@ server.listen(443, function(error){
     } else {
         console.log('Serving securely on port 3443.');
     }
-
-
 });
