@@ -17,6 +17,7 @@
     "node-omxplayer":"latest",
     "chalk":"latest",
     "figlet":"latest",
-    "clear":"latest"
+    "clear":"latest",
+    "inquirer":"latest"
   }
 }
