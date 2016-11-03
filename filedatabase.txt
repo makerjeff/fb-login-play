@@ -1,0 +1,3 @@
+[{"name":"object1","payload":"wonderfultastic first message."},{"name":"object2","payload":"wonderfultastic second message."},{"name":"object3","payload":"slightly more awesome third message."}]
+[{"name":"object1","payload":"wonderfultastic first message."},{"name":"object2","payload":"wonderfultastic second message."},{"name":"object3","payload":"slightly more awesome third message."}]
+[{"name":"object1","payload":"wonderfultastic first message."},{"name":"object2","payload":"wonderfultastic second message."},{"name":"object3","payload":"slightly more awesome third message."}]
