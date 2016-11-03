@@ -29,7 +29,6 @@ var server = https.createServer(options, function(req, res){
 
 
 //Start HTTPS Severus
-
 server.listen(3443, function(error){
     if(error){
         console.error('Error occurred: ' + error);
