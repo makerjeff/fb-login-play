@@ -1,19 +1,18 @@
 /**
+ * Simple Secure Server (HTTPS)
  * Created by jefferson.wu on 10/28/16.
+ *
+ * to check, curl -k https://<your IP address>:3443;
  */
 'use strict';
 
-// to check, curl -k https:<your IP address>:3443.
 const https         = require('https');
 const fs            = require('fs');
 const os            = require('os');
 const chalk         = require('chalk');
 const clear         = require('clear');
-
 const networkInfo   = require('./modules/network_interfaces');
-
-//functional programming at play. =D
-console.log(networkInfo.getIFaces());
+const reqHandlers   = require('./modules/request_handlers');
 
 //load credentials for HTTPS
 const options = {
@@ -22,19 +21,15 @@ const options = {
 };
 
 //Create HTTPS Severus
-var server = https.createServer(options, function(req, res){
-    res.writeHead(200);
-    res.end('hello secure world\n');
-});
-
+var server = https.createServer(options, reqHandlers.handleRequests);
 
 //Start HTTPS Severus
-
 server.listen(3443, function(error){
     if(error){
         console.error('Error occurred: ' + error);
     } else {
         clear();
-        console.log(chalk.blue('Serving securely on port 3443.'));
+        console.log(chalk.blue('Serving securely at: ' + networkInfo.getLocalIP() + ':3443.'));
     }
 });
+

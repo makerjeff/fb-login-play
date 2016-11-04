@@ -11,10 +11,19 @@ var ifaces  = os.networkInterfaces();
  */
 module.exports.getIFaces = function(){
     var elemArray = [];
-
     Object.keys(ifaces).forEach(function(elem, ind, arr){
         elemArray.push(elem);
     });
-
     return elemArray;
+};
+
+/**
+ * Get the local IP of the server
+ */
+module.exports.getLocalIP = function(){
+    if(ifaces.en0[1].address) {
+        return ifaces.en0[1].address;
+    } else {
+        return console.error('IP address not detected');
+    }
 };

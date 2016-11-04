@@ -18,6 +18,7 @@
     "chalk":"latest",
     "figlet":"latest",
     "clear":"latest",
-    "inquirer":"latest"
+    "inquirer":"latest",
+    "httpdispatcher":"latest"
   }
 }

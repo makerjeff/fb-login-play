@@ -8,6 +8,8 @@
 - [Scotch.io: Authenticate a Node.JS app with JSON Web Tokens](https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens)
 - [Facebook for Developers: Access Tokens](https://developers.facebook.com/docs/facebook-login/access-tokens)
 - [Figlet Font List](http://www.flamingtext.com/tools/figlet/fontlist.html)
+- [Modulus IO: Building your first HTTP Server (using httpdispatcher)](http://blog.modulus.io/build-your-first-http-server-in-nodejs)
+- [NPM: HTTPDispatcher](https://www.npmjs.com/package/httpdispatcher)
 
 ##Notes
 - The **git push -u** flag sets the upstream, which let's git know to always push to this location. Without the **-u** flag, it'll require you to designate the location every time.
