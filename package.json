@@ -9,16 +9,17 @@
   "author": "Jefferson Wu <makerjeffwu@gmail.com>",
   "license": "ISC",
   "repository": {
-    "type":"git",
-    "url":"https://github.com/makerjeff/fb-login-play.git"
+    "type": "git",
+    "url": "https://github.com/makerjeff/fb-login-play.git"
   },
   "dependencies": {
-    "express":"latest",
-    "node-omxplayer":"latest",
-    "chalk":"latest",
-    "figlet":"latest",
-    "clear":"latest",
-    "inquirer":"latest",
-    "httpdispatcher":"latest"
+    "chalk": "latest",
+    "clear": "latest",
+    "express": "latest",
+    "figlet": "latest",
+    "httpdispatcher": "latest",
+    "inquirer": "latest",
+    "node-omxplayer": "latest",
+    "socket.io": "^1.5.1"
   }
 }
