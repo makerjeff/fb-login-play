@@ -2,51 +2,45 @@
  * Created by jefferson.wu on 11/7/16.
  */
 
-const http = require('http');
-const clear = require('clear');
-const fs = require('fs');
-
-var server = http.createServer(function(req, res){
-    console.log(req.method + ', ' + req.url);
-    
-    if(req.method === 'GET' && req.url === '/') {
-
-        res.writeHead(200, {'Content-Type':'text/html'});
-        res.write('<h1>This is working</h1>');
-        res.end(getPage('./public/socket.html'));
-
-        //TODO: GET DATA TO WRITE FILE.
 
 
-        // res.writeHead(200, {'Content-Type':'text/html'});
-        // res.write(getPage('./public/socket.html'));
+// forget it. going with Express.
+const express       = require('express');
+const app           = express();
+const http          = require('http').Server(app);
+const chalk         = require('chalk');
+const clear         = require('clear');
 
-    }
+const io            = require('socket.io')(http);
+
+//app.use(express.static('public'));
+
+app.get('/', function(req,res){
+    res.sendFile(__dirname + '/public/socket.html');
 });
 
-server.listen(3000, function(err){
-    if(err){
-        console.error('Error occurred: ' + error);
-    } else {
-        clear();
-        console.log('Serving UN-securely at localhost:3000');
-        getPage('./public/socket.html');
-    }
-});
+// process socket stuff
+io.on('connection', function(socket){
+    console.log(chalk.blue('a user connected: ' + socket.id));
 
-
-// ======== functions ========
-function getPage(fileLocation){
-    fs.readFile(fileLocation, 'utf8', function(err, data){
-        if(err) {
-            console.error('Error: ' + err);
-        } else {
-
-
-            console.log(data);
-            return data.toString();
-        }
+    //chat message event
+    socket.on('chat message', function(data){
+        console.log(socket.id + ' says: ' + data);
+        io.emit('chat message', data);
     });
 
-    //return fs.readFileSync('./public/inject_me.txt', {encoding: 'utf8'});
-}
+    //put socket listeners here
+    socket.on('disconnect', function(){
+        console.log(chalk.red('user ' + socket.id + ' has disconnected.'));
+    });
+});
+
+//start server
+http.listen(3000, function(err){
+    if(err){
+        console.log('Error: ' + err);
+    } else {
+        clear();
+        console.log('listening on localhost:3000');
+    }
+});

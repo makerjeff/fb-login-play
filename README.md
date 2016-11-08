@@ -10,6 +10,7 @@
 - [Figlet Font List](http://www.flamingtext.com/tools/figlet/fontlist.html)
 - [Modulus IO: Building your first HTTP Server (using httpdispatcher)](http://blog.modulus.io/build-your-first-http-server-in-nodejs)
 - [NPM: HTTPDispatcher](https://www.npmjs.com/package/httpdispatcher)
+= [Socket.IO Simple Chat (refresher)](http://socket.io/get-started/chat/)
 
 ##Notes
 - The **git push -u** flag sets the upstream, which let's git know to always push to this location. Without the **-u** flag, it'll require you to designate the location every time.

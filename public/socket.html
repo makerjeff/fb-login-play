@@ -3,11 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>new socket</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font: 13px Arial, sans-serif;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: 0.5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgba(130,224,255,1.0);
+            border: none;
+            padding: 10px;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <!--add socket.io -- START -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
+    <!--add socket.io -- END -->
 
 </head>
 <body>
-<h1>new socket</h1>
+<h1>Socket.IO chat v03</h1>
 
+<ul id="messages">
+    <form action="">
+        <input id="m" autocomplete="off"><button>Send</button>
+    </form>
+</ul>
+
+<script>
+    //emit
+    $('form').submit(function(e){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');    //reset value
+        return false;
+    });
+
+    //listen
+    socket.on('chat message', function(data){
+        $('#messages').append($('<li>').text(data));
+    });
+</script>
 </body>
 </html>
