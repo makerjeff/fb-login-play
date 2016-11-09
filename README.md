@@ -18,7 +18,10 @@
 - [Object.keys(yourObject): Good way to get your object to behave like an array (forEach)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
 - [Node OS Object: Get info about your environment](https://nodejs.org/api/os.html)
 - [StackExchange: Get Local IP in NODE.JS](http://stackoverflow.com/questions/3653065/get-local-ip-address-in-node-js)
+- [JQuery AJAX reference](http://www.w3schools.com/jquery/ajax_ajax.asp)
 
 ##ChangeLog
 - 2016.OCT.28:
     - Added simple-omx-server.js to host the music playback server.
+- 2016.NOV.09:
+    - Added a bunch of stuff, including a simple AI experiment(that requires a sorting code challenge), and the tech inspirations page.

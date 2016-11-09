@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Inspirations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,300" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <style>
+
+        html, body {
+            height: 100%;
+            width: 100%;
+
+            padding: 0;
+            margin: 0;
+
+            font-size: 16px;
+
+            font-family: "Open Sans", sans-serif;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: rgba(255,255,255,1.0);
+        }
+
+        a:visited {
+            color: rgba(255,255,255,1.0);
+        }
+
+        h1 {
+            font-family: "Montserrat", Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .textareas {
+            background: rgba(0,0,0,0.25);
+            color: rgba(255,255,255,1.0);
+        }
+
+        #box {
+            position: relative;
+            width: 45%;
+            /*height: 30%;*/
+
+            background: rgba(0,0,0,0.25);
+            color: rgba(255,255,255,1.0);
+
+            transform: translateY(-25px);
+
+            padding: 10px 30px 30px 30px;
+
+            border-radius: 15px;
+
+            overflow-y: scroll;
+            z-index: 10;
+        }
+
+        #headline {
+            text-align: center;
+        }
+
+        #link {
+
+            padding: 10px 10px 10px 10px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+
+            z-index: 20;
+
+            background: rgba(0,0,0,0.25);
+            border-radius: 15px;
+
+        }
+
+        #background {
+            position: fixed;
+            /*background: url('./imgs/robot.jpg');*/
+            background-repeat: no-repeat;
+            background-size: cover;
+            /*background-position: top;*/
+
+            height: 100%;
+            width: 100%;
+            z-index: 0;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<!--CONTAINER START-->
+<div class="container">
+
+    <!--BOX START -->
+    <div class="textareas" id="box">
+        <div id="headline">
+            <h1 id="headline-text"></h1>
+
+        </div>
+        <div  id="bodytext">
+
+        </div>
+
+
+
+    </div>
+
+    <div class="textareas" id="link"> <a id="linkhref" href="#">More <span class="fa fa-forward"></span></a> </div>
+    <!--BOX END-->
+
+    <!--BACKGROUND START-->
+    <div id="background">
+        <!--<img src="./imgs/robot.jpg">-->
+    </div>
+    <!--BACKGROUND END-->
+
+</div>
+<!--CONTAINER END-->
+
+<!-- LOGIC -->
+<script>
+
+    //on load
+    window.addEventListener('load', function(e){
+        console.log('DOC is ready.');
+
+        getArticleData();
+
+        var link = document.getElementById('linkhref');
+
+        link.href = "http://www.google.com";
+
+        link.addEventListener('click', function(e){
+            console.log('button was clicked.');
+        });
+
+    });
+
+    //on DOM
+    document.addEventListener('DOMContentLoaded', function(e){
+        console.log('DOM is ready.');
+    });
+
+
+    // ===============
+    // FUNCTIONS =====
+    // ===============
+
+    function getArticleData(){
+        $.ajax({
+            url:'./inspirations.json',
+            error: function(jqxhr, status, error) {
+                if(error){
+                    console.error('Error ocurred: ' + error);
+                }
+
+            },
+            success: function(result, status, jqxhr){
+
+                randomizePagePost(result);
+
+            }
+        });
+    }
+
+    function randomizePagePost(data){
+        var headlineText = document.getElementById('headline-text');
+        var bodyText = document.getElementById('bodytext');
+        var background = document.getElementById('background');
+        var link = document.getElementById('linkhref');
+
+        var selectedPost = Math.floor(Math.random() * data.length);
+
+        headlineText.innerText = data[selectedPost].title;
+        bodyText.innerText = data[selectedPost].bodyText;
+        background.style.background = 'url(' + data[selectedPost].imageUrl + ')';
+        background.style.backgroundSize = 'cover';
+
+        link.href = 'http://www.google.com/#q=' + data[selectedPost].title;
+
+
+
+        //DEBUG
+//        data.forEach(function(elem, ind, arr){
+//            Object.keys(elem).forEach(function(element, index, array){
+//                console.log(elem[element]);
+//            });
+//        });
+
+    }
+
+</script>
+<!-- LOGIC END -->
+
+</body>
+</html>
